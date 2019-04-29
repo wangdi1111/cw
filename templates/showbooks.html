@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>书籍列表</title>
+</head>
+<body>
+<div class="row">
+    <div class="col-lg-8 col-lg-offset-2">
+        <a href="{% url 'addbook' %}" class="button btn-success">新增书籍</a>
+        <table class="table table-hover table-bordered">
+            <thead>
+            <tr>
+                <th>书籍id</th>
+                <th>书籍名称</th>
+                <th>书籍价格</th>
+                <th>出版社</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for book_obj in all_books_obj %}
+                <tr>
+                    <td>{{ book_obj.pk }}</td>
+                    <td>{{ book_obj.title }}</td>
+                    <td>{{ book_obj.price }}</td>
+                    <td>{{ book_obj.publish }}</td>
+                    <td><a href="{% url 'addbook' book_obj.pk %}">编辑</a>|<a href="{% url 'deletebook' book_obj.pk %}">删除</a></td>
+                </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+</body>
+</html>
